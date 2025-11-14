@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 camera = cv2.VideoCapture(0)
-
+trajectory = []
 while True:
     ret, frame = camera.read()
     if not ret:
@@ -51,11 +51,15 @@ while True:
         y_min = y_coords.min()
         y_max = y_coords.max()
 
+        trajectory.append([cX, cY])
         # Рисуем bounding box
         cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 0, 0), 2)
 
         # Рисуем центр масс (вычисленный через моменты!)
         cv2.circle(frame, (cX, cY), 3, (255, 0, 0), -1)
+
+        trajectory_formatted = np.array(trajectory, np.int32)
+        cv2.polylines(frame, [trajectory_formatted], False, (0, 0, 255), 4)
 
         # Дополнительно: выводим информацию о моментах для понимания
         cv2.putText(
