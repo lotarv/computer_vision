@@ -6,12 +6,12 @@ def BlurFuss():
     img = cv2.imread("test.jpg", cv2.IMREAD_GRAYSCALE)
 
     #  размер ядра фильтра и стандартное отклонение
-    kernel_size = 5
-    standard_deviation = 100
+    kernel_size = 11
+    standard_deviation = 50
 
     imgBlur1 = GaussBlur(img, kernel_size, standard_deviation)
-    imgWithNoise1 = addGaussianNoise(imgBlur1, mean = 0, standard_deviation = 25)
-    cv2.imshow(str(kernel_size) + 'x' + str(kernel_size) + ' and deviation ' + str(standard_deviation), imgWithNoise1)
+    # imgWithNoise1 = addGaussianNoise(imgBlur1, mean = 0, standard_deviation = 25)
+    cv2.imshow(str(kernel_size) + 'x' + str(kernel_size) + ' and deviation ' + str(standard_deviation), imgBlur1)
 
     # другие параметры
     kernel_size = 11
